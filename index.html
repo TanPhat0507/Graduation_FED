@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Football Card Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Left sidebar: logo + menu -->
+    <aside class="sidebar">
+      <img class="logo" src="images/logo.png" alt="Game logo">
+      <nav class="menu" aria-label="Main menu">
+        <button class="menu__item is-active" data-page="home" aria-current="page">Home</button>
+        <button class="menu__item" data-page="quests">Quests</button>
+        <button class="menu__item" data-page="signings">Star signings</button>
+      </nav>
+    </aside>
+
+    <!-- Right side: gray area with coin balance + the current page -->
+    <main class="main">
+      <div class="topbar">
+        <div class="coin-pill" aria-label="Coin balance">
+          <img class="coin" src="images/coin.png" alt="">
+          <span class="js-coins">1,000</span>
+        </div>
+      </div>
+
+      <!-- Page 1: Home -->
+      <!-- Page 1: Home -->
+      <section class="page page--home" id="page-home">
+        <div class="slider">
+          <button class="arrow" id="prev-player" aria-label="Previous player">&#8249;</button>
+
+          <article class="player">
+            <img class="player__card" id="player-img" src="images/yamal.png" alt="">
+            <div class="player__info">
+              <h1 class="player__name" id="player-name"></h1>
+              <p class="player__meta" id="player-meta"></p>
+              <p class="player__bio" id="player-bio"></p>
+              <ul class="stats" id="player-stats"></ul>
+            </div>
+          </article>
+
+          <button class="arrow" id="next-player" aria-label="Next player">&#8250;</button>
+        </div>
+
+        <div class="dots" id="player-dots"></div>
+      </section>
+
+      <!-- Page 2: Quests -->
+      <section class="page" id="page-quests" hidden>
+        <div class="quests">
+          <div class="tabs" role="tablist" aria-label="Quest type">
+            <button class="tab is-active" role="tab" data-tab="daily">Daily</button>
+            <button class="tab" role="tab" data-tab="weekly">Weekly</button>
+            <button class="tab" role="tab" data-tab="season">Season</button>
+          </div>
+
+          <!-- <div class="card">
+            <div class="card__head">
+              <span>Season Pass&nbsp;&nbsp;-&nbsp;&nbsp;Level <span id="pass-level">0</span></span>
+            </div>
+            <div class="progress">
+              <div class="progress__fill" id="pass-fill"></div>
+            </div> -->
+          <!-- </div> -->
+
+          <div class="quest-list" id="quest-list"></div>
+        </div>
+      </section>
+
+      <!-- Page 3: Star signings -->
+      <section class="page" id="page-signings" hidden>
+        <div class="signings" id="signing-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #D9D9D9;
+  /* gray main area + stat tiles */
+  --panel: #FFFFFF;
+  /* sidebar, cards, pills */
+  --green: #0E8A43;
+  /* buttons, progress fill, active text */
+  --green-soft: #E3F1E7;
+  /* active menu/tab bg, progress track */
+  --text: #111111;
+  --muted: #9A9A9A;
+  --sidebar-w: 220px;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* so `display:flex` never overrides hidden */
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* ---------- App shell: sidebar | main ---------- */
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  background: var(--panel);
+  padding: 16px 14px;
+}
+
+.logo {
+  display: block;
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  /* rounded black square */
+  margin-bottom: 32px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu__item {
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.menu__item.is-active {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+/* ---------- Main area ---------- */
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 28px 28px;
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- Coin + pill ---------- */
+.coin {
+  --size: 22px;
+  display: block;
+  flex: none;
+  width: var(--size);
+  height: var(--size);
+  object-fit: contain;
+}
+
+.coin-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 16px 4px 4px;
+  background: var(--panel);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.coin-pill .coin {
+  --size: 26px;
+}
+
+/* ---------- Home ---------- */
+.page--home {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* hàng chứa: nút trái | thẻ cầu thủ | nút phải */
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(860px, 100%);
+}
+
+.arrow {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--panel);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.arrow:hover {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+/* chấm báo đang xem cầu thủ thứ mấy */
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #B5B5B5;
+}
+
+.dot.is-active {
+  background: var(--green);
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  flex: 1;
+  min-width: 0;
+  padding: 6px 40px 6px 20px;
+  /* card almost touches top/bottom edge */
+  background: var(--panel);
+  border-radius: 22px;
+}
+
+.player__card {
+  display: block;
+  height: 270px;
+  width: 200px;
+  object-fit: contain;
+  flex: none;
+}
+
+.player__name {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.player__meta {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.player__bio {
+  margin: 14px 0 0;
+  max-width: 26ch;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.stats {
+  display: flex;
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  min-width: 76px;
+  padding: 14px 10px;
+  border-radius: 22px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.stat span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.25;
+  color: #8A8A8A;
+}
+
+/* ---------- Quests ---------- */
+.quests {
+  width: min(620px, 100%);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: flex-start;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  /* 3 pills spread across the column */
+  margin-bottom: 6px;
+}
+
+.tab {
+  width: 27%;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--panel);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab.is-active {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  padding: 16px 24px 18px;
+  background: var(--panel);
+  border-radius: 18px;
+}
+
+.card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 24px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.reward .coin {
+  --size: 22px;
+}
+
+.progress {
+  height: 12px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  /* track */
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: var(--green);
+  /* fill */
+  transition: width .3s ease;
+}
+
+.btn-pill {
+  display: block;
+  width: 100%;
+  height: 28px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Not clickable (In progress / Claimed / Signed) -> pale green */
+.btn-pill:disabled {
+  background: #9BC9AB;
+  cursor: not-allowed;
+}
+
+/* ---------- Star signings ---------- */
+.signings {
+  width: min(640px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, 236px);
+  justify-content: space-between;
+  /* big gap between the two columns */
+  align-content: start;
+  gap: 20px;
+  padding-top: 6px;
+}
+
+.sign-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: var(--panel);
+  border-radius: 18px;
+  perspective: 400px;
+}
+
+.sign-card>img {
+  display: block;
+  height: 150px;
+  width: auto;
+  max-width: 100%;
+  /* transition: transform .1s ease-out; */
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 14px;
+  position: relative;
+}
+
+.price .coin {
+  --size: 30px;
+}
+
+.sign-card .btn-pill {
+  width: 118px;
+  height: 24px;
+  margin-top: 4px;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 12px);
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--text);
+  color: #fff;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Small screens: sidebar becomes a top bar ---------- */
+@media (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .sidebar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    overflow-x: auto;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin: 0;
+    flex: none;
+  }
+
+  .menu {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .menu__item {
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 15px;
+  }
+
+  .main {
+    padding: 14px;
+  }
+
+  .player {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .player__card {
+    height: 240px;
+  }
+
+  .player__bio {
+    margin-inline: auto;
+  }
+
+  .stats {
+    justify-content: center;
+  }
+
+  .signings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .sign-card>img {
+    height: 120px;
+  }
+
+  .sign-card .btn-pill {
+    width: 100%;
+  }
+}
